@@ -22,8 +22,13 @@ func main() {
 
 			// Case 1: No args - List profiles
 			if len(args) == 0 {
+				current := os.Getenv("AWS_PROFILE")
 				for _, p := range profiles {
-					fmt.Println(p)
+					if p == current {
+						fmt.Printf("\033[1;32m %s\033[0m\n", p)
+					} else {
+						fmt.Println(p)
+					}
 				}
 				return
 			}
